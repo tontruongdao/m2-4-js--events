@@ -76,7 +76,18 @@ All DOM nodes have methods we can use to _notify_ us of an event.
 - [`removeEventListener()`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/removeEventListener)
 
 ```js
-// Example
+// HTML
+<button class="main-button">Click</button>;
+
+//JS
+let elem = document.querySelector(".main-button");
+
+function handleMouseOver(event) {
+  console.log("link was clicked");
+}
+
+elem.addEventListener("mouseover", handleMouseOver);
+elem.removeEventListener("mouseover", handleMouseOver);
 ```
 
 ---
@@ -86,7 +97,7 @@ All DOM nodes have methods we can use to _notify_ us of an event.
 Event handler functions are passed an argument, when events are triggered.
 
 ```js
-window.addEventListener(function (event) {
+window.addEventListener("scroll", function (event) {
   console.log(event);
 });
 ```
@@ -143,17 +154,17 @@ Handlers registered on nodes with children will also receive events that happen 
 ```
 
 ```js
-let para = document.querySelector('p');
-let button = document.querySelector('button');
+let para = document.querySelector("p");
+let button = document.querySelector("button");
 
-para.addEventListener('mousedown', () => {
-  console.log('Handler for paragraph.');
+para.addEventListener("mousedown", () => {
+  console.log("Handler for paragraph.");
 });
 
-button.addEventListener('mousedown', (event) => {
-  console.log('Handler for button.');
+button.addEventListener("mousedown", (event) => {
+  console.log("Handler for button.");
 
-  if (event.button == 2) {
+  if (event.button === 2) {
     event.stopPropagation();
   }
 });
@@ -171,5 +182,28 @@ button.addEventListener('mousedown', (event) => {
 > Write a page that displays a balloon (using the balloon emoji, 🎈). When you press the up arrow, it should inflate (grow) 10 percent, and when you press the down arrow, it should deflate (shrink) 10 percent.
 
 _source [Eloquent JavaScript](https://eloquentjavascript.net/15_event.html)_
+
+<!-- HTML
+<h1 id="balloon">🎈</h1>
+-->
+
+<!-- JS
+
+let fontSize = 18;
+
+let balloon = document.querySelector('#balloon');
+balloon.style.fontSize = fontSize + 'px';
+
+window.addEventListener('keydown', function(event) {
+  if (event.code === 'ArrowUp') {
+    fontSize += fontSize * 0.1
+    balloon.style.fontSize = fontSize + 'px';
+  } else if (event.code === 'ArrowDown') {
+    fontSize -= fontSize * 0.1
+    balloon.style.fontSize = fontSize + 'px';
+  }
+}
+
+ -->
 
 ---

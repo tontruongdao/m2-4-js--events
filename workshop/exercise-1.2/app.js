@@ -21,3 +21,26 @@
 // Stretch goal
 // Make the countdown live (show a countdown that updates several times a
 // second)
+let body = document.querySelector('body');
+let result = document.getElementById('result');
+
+let hasWon = false;
+
+let time = Math.floor(Math.random() * 3 + 2);
+document.getElementById('time').innerText = time;
+
+function clickEvent() {
+  hasWon = true;
+  result.innerText = 'Victory!';
+  body.removeEventListener('click', clickEvent);
+}
+
+setTimeout(function () {
+  console.log('time up');
+  if (hasWon === false) {
+    result.innerText = 'Defeat!';
+    body.removeEventListener('click', ckickEvent);
+  }
+}, time * 1000);
+
+body.addEventListener('click', clickEvent);

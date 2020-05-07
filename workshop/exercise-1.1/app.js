@@ -13,3 +13,22 @@
 // OPTIONAL
 // Feel free to add some CSS to this once you're done
 // --------------------------------------------------
+let body = document.querySelector('body');
+let result = document.getElementById('result');
+
+let hasWon = false;
+
+function clickEvent() {
+  hasWon = true;
+  result.innerText = 'Victory!';
+  body.removeEventListener('click', clickEvent);
+}
+
+setTimeout(function () {
+  if (hasWon === false) {
+    result.innerText = 'Defeat!';
+    body.removeEventListener('click', clickEvent);
+  }
+}, 5000);
+
+body.addEventListener('click', clickEvent);
